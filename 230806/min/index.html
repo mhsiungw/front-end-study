@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			body {
+				margin: 0;
+			}
+
+			img {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+			}
+
+			/***************
+					grid style 
+			***************/
+
+			.grid-container {
+				display: grid;
+				width: 100vw;
+				height: 100vh;
+				grid-template-columns: repeat(6, 1fr);
+				grid-template-rows: repeat(6, 1fr);
+			}
+
+			.grid-item:nth-child(1) {
+				grid-row: span 6;
+				grid-column: span 2
+			}
+
+			.grid-item:nth-child(2),
+			.grid-item:nth-child(3),
+			.grid-item:nth-child(4),
+			.grid-item:nth-child(5) {
+				grid-row: span 3;
+				grid-column: span 2;
+			}
+
+			/***************
+					mask style 
+			***************/
+
+			.mask-container {
+				position: relative;
+			}
+
+			.mask {
+				z-index: 100;
+				position: absolute;
+				background-color: black;
+				width: 100%;
+				height: 100%;
+
+				animation-fill-mode: forwards;
+			}
+
+			.mask-container:nth-child(2) .mask {
+				animation-duration: .4s;
+				animation-name: shrinkFromLeftToRight;
+			}
+
+			.mask-container:nth-child(3) .mask {
+				animation-delay: .4s;
+				animation-duration: 1s;
+				animation-name: shrinkFromLeftToRight;
+			}
+
+			.mask-container:nth-child(5) .mask {
+				animation-delay: calc(.4s * 2);
+				animation-duration: 1s;
+				animation-name: shrinkFromTopToBottom;
+			}
+
+			.mask-container:nth-child(4) .mask {
+				animation-delay: calc(.4s * 3);
+				animation-duration: 1s;
+				animation-name: shrinkFromRightToLeft;
+			}
+
+			.mask-container:nth-child(1) .mask {
+				animation-delay: calc(.4s * 4);
+				animation-duration: 1s;
+				animation-name: shrinkFromBottomToTop;
+			}
+
+			@keyframes shrinkFromLeftToRight {
+				0% {
+					margin-left: 0%;
+					width: 100%;
+					/* Firefox 16+, IE 10+, Opera */
+					height: 100%;
+				}
+				100% {
+					margin-left: 100%;
+					width: 0%;
+					/* Firefox 16+, IE 10+, Opera */
+					height: 100%;
+				}
+			}
+
+			@keyframes shrinkFromTopToBottom {
+				0% {
+					margin-top: 0%;
+					height: 100%;
+				}
+				100% {
+					margin-top: 100%;
+					height: 0%;
+				}
+			}
+
+			@keyframes shrinkFromRightToLeft {
+				0% {
+					margin-right: 0%;
+					width: 100%;
+				}
+				100% {
+					margin-right: 100%;
+					width: 0%;
+				}
+			}
+
+			@keyframes shrinkFromBottomToTop {
+				0% {
+					margin-bottom: 0%;
+					height: 100%;
+				}
+				100% {
+					margin-bottom: 100%;
+					height: 0%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="grid-container">
+			<div class="grid-item mask-container">
+				<div class="mask"></div>
+				<img
+					src="https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_2228_12.jpg&sizetype=3"
+				/>
+			</div>
+			<div class="grid-item mask-container">
+				<div class="mask"></div>
+				<img
+					src="https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_2228_12.jpg&sizetype=3"
+				/>
+			</div>
+			<div class="grid-item mask-container">
+				<div class="mask"></div>
+				<img
+					src="https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_2228_12.jpg&sizetype=3"
+				/>
+			</div>
+			<div class="grid-item mask-container">
+				<div class="mask"></div>
+				<img
+					src="https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_2228_12.jpg&sizetype=3"
+				/>
+			</div>
+			<div class="grid-item mask-container">
+				<div class="mask"></div>
+				<img
+					src="https://www.taiwan.net.tw/pic.ashx?qp=1/big_scenic_spots/pic_2228_12.jpg&sizetype=3"
+				/>
+			</div>
+		</div>
+	</body>
+</html>
