@@ -1,0 +1,139 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.img-wrapper {
+  display: grid;
+  min-height: 100vh;
+  gap: 0.25rem;
+}
+
+.img {
+  --animation-time: 1000ms;
+  --clip-path: var(--from-bottom, 0) var(--from-left, 0) var(--from-top, 0)
+    var(--from-right, 0);
+
+  background-size: cover;
+  clip-path: inset(var(--clip-path));
+  animation: var(--animation-time) ease show-image forwards;
+  background-position: center;
+}
+
+.img-1 {
+  background-image: url(https://image.tristar.com.tw/Picture/NewTristar/91825/580/1557115214_431456563f_h.jpeg);
+}
+
+.img-2 {
+  background-image: url(https://image.tristar.com.tw/Picture/NewTristar/91825/488/1557115280_7b4eb1d364_h.jpeg);
+}
+
+.img-3 {
+  background-image: url(https://image.tristar.com.tw/Picture/NewTristar/91825/883/1557115370_ee04bcc3a9_h.jpeg);
+}
+
+.img-4 {
+  background-image: url(https://image.tristar.com.tw/Picture/NewTristar/91825/488/1557115280_7b4eb1d364_h.jpeg);
+}
+
+.img-5 {
+  background-image: url(https://image.tristar.com.tw/Picture/NewTristar/101513/622/1669362224_bf7d3cd571_h.jpeg);
+}
+
+[data-show-from] {
+  --from-top: 100%;
+}
+
+[data-order="1"] {
+  animation-delay: calc(var(--animation-time) * 0);
+}
+
+[data-order="2"] {
+  animation-delay: calc(var(--animation-time) * 0.3);
+}
+
+[data-order="3"] {
+  animation-delay: calc(var(--animation-time) * 0.4);
+}
+
+[data-order="4"] {
+  animation-delay: calc(var(--animation-time) * 0.5);
+}
+
+[data-order="5"] {
+  animation-delay: calc(var(--animation-time) * 0.7);
+}
+
+@keyframes show-image {
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (width >= 25em) {
+  .img-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 50em) {
+  .img-1 {
+    grid-area: one;
+  }
+
+  .img-2 {
+    grid-area: two;
+  }
+
+  .img-3 {
+    grid-area: three;
+  }
+
+  .img-4 {
+    grid-area: four;
+  }
+
+  .img-5 {
+    grid-area: five;
+    background-position: 50% 0;
+  }
+
+  .img-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "five one two"
+      "five four three";
+  }
+
+  [data-show-from] {
+    --from-top: 0;
+  }
+
+  [data-show-from="top"] {
+    --from-top: 100%;
+  }
+
+  [data-show-from="right"] {
+    --from-right: 100%;
+  }
+
+  [data-show-from="bottom"] {
+    --from-bottom: 100%;
+  }
+
+  [data-show-from="left"] {
+    --from-left: 100%;
+  }
+}
