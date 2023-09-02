@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<!-- not custom element-->
+		<!-- <link rel="stylesheet" href="./not-custom-element/style.css" /> -->
+		<!-- <script src="./not-custom-element/index.js" defer></script> -->
+		<script type="module" src="./custom-element/slider.js" defer></script>
+		<script src="./index.js" defer></script>
+	</head>
+	<body>
+		<!-- not custom element-->
+		<!-- <div class="range-inputs-container">
+			<input type="range" class="range-input min-range-input" />
+			<div class="range-bar"></div>
+			<input type="range" class="range-input max-range-input" />
+		</div> -->
+
+
+		<!-- custom element -->
+		<slider-input 
+			min="0"
+			max="100"
+			marks="0, 25, 50, 75, 100"
+		/>
+	</body>
+</html>
