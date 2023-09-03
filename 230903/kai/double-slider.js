@@ -1,6 +1,6 @@
 class DoubleSlider extends HTMLElement {
-  #v1 = this.getAttribute("min-value")
-  #v2 = this.getAttribute("max-value")
+  v1 = this.getAttribute("min-value")
+  v2 = this.getAttribute("max-value")
   #width = this.getAttribute("width")
   constructor() {
     super()
@@ -22,20 +22,14 @@ class DoubleSlider extends HTMLElement {
     secondInput.setAttribute("value", this.getAttribute("min-value"))
 
     firstInput.addEventListener("input", (e) => {
-      this.#v2 = e.target.value
+      this.v2 = e.target.value
       this.style.setProperty("--track-width", `${this.calculateTrack()}px`)
-      this.style.setProperty(
-        "--track-start",
-        `${this.calculateTrackStart()}px`
-      )
+      this.style.setProperty("--track-start", `${this.calculateTrackStart()}px`)
     })
     secondInput.addEventListener("input", (e) => {
-      this.#v1 = e.target.value
+      this.v1 = e.target.value
       this.style.setProperty("--track-width", `${this.calculateTrack()}px`)
-      this.style.setProperty(
-        "--track-start",
-        `${this.calculateTrackStart()}px`
-      )
+      this.style.setProperty("--track-start", `${this.calculateTrackStart()}px`)
     })
 
     wrapper.appendChild(firstInput)
@@ -60,7 +54,7 @@ class DoubleSlider extends HTMLElement {
         width: 100%;
       }
       input::-webkit-slider-thumb {
-        background: ${this.getAttribute("thumb-color") || "currentColor"};
+        background: ${this.getAttribute("thumb-color") || "#39ac97"};
         border: none; /* get rid of Firefox thumb border */
         border-radius: 99em; /* get rid of Firefox corner rounding */
         pointer-events: auto; /* catch clicks */
@@ -82,13 +76,24 @@ class DoubleSlider extends HTMLElement {
         content: "";
         position: absolute;
         width: calc(var(--track-width) - var(--thumb-width, 20px) * 0.25);
-        background-color: ${this.getAttribute("track-color") || "currentColor"};
+        background-color: ${this.getAttribute("track-color") || "#7dd4c4"};
         height: 50%;
         top: 50%;
         translate: calc(var(--track-start, 0px) + var(--thumb-width, 20px) * 0.125) -50%;
         left: auto;
         right: auto;
         z-index: -1;
+      }
+      .wrapper::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        top: 50%;
+        translate: 0 -50%;
+        background-color: ${this.getAttribute("track-background") || "#c6ece5"};
+        z-index: -2;
+        border-radius: 99em;
       }
     `
   }
@@ -99,11 +104,11 @@ class DoubleSlider extends HTMLElement {
   }
 
   calculateTrack() {
-    return (Math.abs(this.#v1 - this.#v2) / 100) * this.#width
+    return (Math.abs(this.v1 - this.v2) / 100) * this.#width
   }
 
   calculateTrackStart() {
-    const left = Math.min(this.#v1, this.#v2)
+    const left = Math.min(this.v1, this.v2)
     return (left / 100) * this.#width
   }
 }
